@@ -39,7 +39,7 @@
                 </div>
                 <div class="mdl-card__supporting-text">
                     <!-- Textfield -->
-                    <form id="text" action="#">
+                    <form id="text" action="#" @submit.prevent="add()">
                         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                             <input maxlength="30" v-model="todo" class="mdl-textfield__input" type="text" id="todo_text">
                             <label class="mdl-textfield__label" for="todo_text">Write down your TODO...</label>
@@ -54,6 +54,7 @@
                         <span class="mdl-list__item-primary-content">
                             <i class="material-icons">keyboard_arrow_right</i>
                             {{ item.text }}
+                            {{ item.id}}
                         </span>
                         <span class="mdl-list__item-secondary-action">
                             <button v-on:click="del(item.id)" class="mdl-button mdl-button--icon mdl-js-button mdl-js-ripple-effect">

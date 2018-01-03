@@ -8,7 +8,7 @@ var vue = new Vue({
     methods: {
         del: function (id) {
             this.items = this.items.filter(item => item.id != id);
-            this.setStorage(this.items)
+            this.setStorage('todos', this.items)
         },
         add: function () {
             let text = this.todo
@@ -16,15 +16,17 @@ var vue = new Vue({
                 this.todo = ''
                 this.items.push({ id: this.counter, text })
                 this.counter++
-                this.setStorage(this.items)
+                this.setStorage('todos',this.items)
+                this.setStorage('counter', this.counter)
             }
         },
-        setStorage: function(data) {
-            localStorage.setItem('todos', JSON.stringify(data))
+        setStorage: function(key, data) {
+            localStorage.setItem(key, JSON.stringify(data))
         },
         deleteAll: function () {
             this.items = []
             localStorage.removeItem('todos')
+            this.counter = 0
         }
     },
     mounted() {
