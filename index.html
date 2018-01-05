@@ -58,11 +58,18 @@
                             {{ item.text }} {{ item.id }}
                         </span>
                         <span class="mdl-list__item-secondary-action ">
-                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" :for="item.id">
-                                <input v-on:click="toggle(item.id)" :value="item.id" v-model="checkedIDs" type="checkbox" :id="item.id" class="mdl-checkbox__input">
+                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="item.id">
+                                <input  :value="item.id" v-model="checkedIDs" type="checkbox" :id="item.id" class="mdl-switch__input">
                                 <span class="mdl-checkbox__label"></span>
                             </label>
+                            
                         </span>
+                    </li>
+                </ul>
+                
+                <ul>
+                    <li v-for="i in checkedIDs">
+                        {{ i }}
                     </li>
                 </ul>
                 <div class="mdl-card__actions mdl-card--border">

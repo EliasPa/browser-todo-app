@@ -1,11 +1,13 @@
 var vue = new Vue({
     el: '#app',
     data: {
+        c: true,
         items: [],
         counter: 0,
         todo: '',
         id: null,
-        checkedIDs: []
+        checkedIDs: [],
+        toggle: true
     },
     methods: {
         del: function (id) {
@@ -13,17 +15,17 @@ var vue = new Vue({
             this.setStorage('todos', this.items)
         },
         add: function () {
-
+            this.printArray(this.checkedIDs)
             let text = this.todo
             if (text.length != 0) {
                 this.todo = ''
-                this.items.push({ id: this.counter, text, shouldBeDeleted: false})
+                this.items.push({ id: this.counter, text, shouldBeDeleted: false })
                 this.counter++
-                this.setStorage('todos',this.items)
+                this.setStorage('todos', this.items)
                 this.setStorage('counter', this.counter)
             }
         },
-        setStorage: function(key, data) {
+        setStorage: function (key, data) {
             localStorage.setItem(key, JSON.stringify(data))
         },
         deleteAll: function () {
@@ -31,30 +33,32 @@ var vue = new Vue({
             localStorage.removeItem('todos')
             this.counter = 0
         },
-        toggle: function(id) {
-            
+        toggle: function (id) {
+
         },
-        deleteSelected: function(){
-            this.items = this.items.filter(item => this.checkedIDs.indexOf(item.id) != -1);
-            // console.log(this.checkedIDs)
+        deleteSelected: function () {
+            this.items = this.items.filter(item => this.checkedIDs.indexOf(item.id) == -1);
+            // uncheck all boxes
             this.printArray(this.checkedIDs)
             this.setStorage('todos', this.items)
+            this.checkedIDs = []
+            vue.$forceUpdate();
         },
-        printArray: function(data){
+        printArray: function (data) {
             for (let index = 0; index < data.length; index++) {
                 let el = data[index];
-                console.log(el)
+                console.log("i", el)
             }
         }
     },
     mounted() {
         let data = JSON.parse(localStorage.getItem('todos'))
-        if(data != null){
+        if (data != null) {
             this.items = data
         }
 
         let count = JSON.parse(localStorage.getItem('counter'))
-        if(count != null){
+        if (count != null) {
             this.counter = count
         }
         this.id = this._uid
