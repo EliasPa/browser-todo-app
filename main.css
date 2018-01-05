@@ -1,0 +1,18 @@
+.mdl-card {
+    min-height: 50px;
+    min-width: 375px;
+}
+
+.mdl-list {
+    width: 100%;
+    overflow-y: scroll;
+    height: 30%;
+}
+
+#add {
+    display: inline;
+}
+
+#text {
+    display: inline;
+}
