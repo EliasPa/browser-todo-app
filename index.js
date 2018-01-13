@@ -39,7 +39,12 @@ var vue = new Vue({
         deleteSelected: function () {
             this.items = this.items.filter(item => this.checkedIDs.indexOf(item.id) == -1);
             // uncheck all boxes
-            this.printArray(this.checkedIDs)
+            var cboxes = this.$el.querySelectorAll('.mdl-js-checkbox')//.MaterialCheckbox.uncheck()
+            for (let i = 0; i < cboxes.length; i++) {
+                const element = cboxes[i];
+                element.MaterialCheckbox.uncheck()
+                
+            }
             this.setStorage('todos', this.items)
             this.checkedIDs = []
             vue.$forceUpdate();

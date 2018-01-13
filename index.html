@@ -55,11 +55,11 @@
                     <li class="mdl-list__item" v-for="item in items">
                         <span class="mdl-list__item-primary-content">
                             <i class="material-icons">keyboard_arrow_right</i>
-                            {{ item.text }} {{ item.id }}
+                            {{ item.text }}
                         </span>
                         <span class="mdl-list__item-secondary-action ">
-                            <label class="mdl-switch mdl-js-switch mdl-js-ripple-effect" :for="item.id">
-                                <input  :value="item.id" v-model="checkedIDs" type="checkbox" :id="item.id" class="mdl-switch__input">
+                            <label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" :for="item.id">
+                                <input  :value="item.id" v-model="checkedIDs" type="checkbox" :id="item.id" class="mdl-checkbox__input">
                                 <span class="mdl-checkbox__label"></span>
                             </label>
                             
@@ -67,11 +67,6 @@
                     </li>
                 </ul>
                 
-                <ul>
-                    <li v-for="i in checkedIDs">
-                        {{ i }}
-                    </li>
-                </ul>
                 <div class="mdl-card__actions mdl-card--border">
                     <a v-on:click="deleteAll()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
                         Clear All
